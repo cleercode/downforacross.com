@@ -1,6 +1,6 @@
 import './css/index.css';
 import React, {Component} from 'react';
-import {MdChatBubble} from 'react-icons/md';
+import {MdModeEdit, MdInfo, MdChatBubble} from 'react-icons/md';
 
 import Clock from './Clock';
 import ActionMenu from './ActionMenu';
@@ -104,21 +104,21 @@ export default class Toolbar extends Component {
   renderPencil() {
     const {pencilMode} = this.props;
     return (
-      <div
-        className={'toolbar--pencil' + (pencilMode ? ' on' : '')}
-        onClick={this.handlePencilClick}
-        onMouseDown={this.handleMouseDown}
-        title={'Shortcut: .'}
-      >
-        <i className="fa fa-pencil" />
-      </div>
+      <button className={`popup-menu--button`}>
+        <MdModeEdit
+          className={'toolbar--icon toolbar--pencil' + (pencilMode ? ' on' : '')}
+          onClick={this.handlePencilClick}
+          onMouseDown={this.handleMouseDown}
+          title={'Shortcut: .'}
+        />
+      </button>
     );
   }
 
   renderInfo() {
     return (
       <div className={'toolbar--info'}>
-        <Popup icon="fa-info-circle" onBlur={this.handleBlur}>
+        <Popup icon={<MdInfo className="toolbar--icon" />} onBlur={this.handleBlur}>
           <h3>How to Enter Answers</h3>
           <ul>
             <li>

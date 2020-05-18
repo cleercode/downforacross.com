@@ -6,9 +6,6 @@ code {
 .toolbar {
   padding: 10px 10px 8px 50px;
   min-height: 20px;
-  border-top: 1px solid #e2e2e2;
-  border-left: 1px solid #e2e2e2;
-  border-right: 1px solid #e2e2e2;
   border-bottom: 1px solid #e2e2e2;
 
   display: flex;
@@ -64,6 +61,8 @@ code {
   border: none;
   outline: none;
   cursor: pointer;
+  font-size: 14px;
+  line-height: 16px;
 }
 
 .toolbar button:hover {
@@ -85,8 +84,13 @@ code {
   cursor: pointer;
 }
 
-.toolbar--pencil.on .fa-pencil {
-  color: var(--main-blue) !important;
+.toolbar--icon {
+  width: 20px;
+  height: 20px;
+}
+
+.toolbar--pencil.on {
+  fill: var(--main-blue) !important;
 }
 
 .toolbar--mobile--top {
