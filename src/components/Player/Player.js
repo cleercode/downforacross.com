@@ -70,7 +70,7 @@ export default class Player extends Component {
     const {width, height} = el.getBoundingClientRect();
     const rows = this.props.grid.length;
     const cols = this.props.grid[0].length;
-    const size = Math.floor(Math.min(width / cols, height / rows));
+    const size = Math.floor(Math.max(width / cols, height / rows));
     this.setState({
       size,
     });
@@ -254,9 +254,12 @@ export default class Player extends Component {
   }
 
   handleSetCursorLock = (val) => {
-    setTimeout(() => {
-      this.cursorLocked = val;
-    }, val ? 0 : 150);
+    setTimeout(
+      () => {
+        this.cursorLocked = val;
+      },
+      val ? 0 : 150
+    );
   };
 
   /* Render */
@@ -283,11 +286,13 @@ export default class Player extends Component {
     const {cellStyle = {}} = gridStyle;
 
     const currentTime = getTime();
-    const cursors = allCursors.filter((cursor) => cursor.id !== id).map((cursor) => ({
-      ...cursor,
-      active: cursor.timestamp > currentTime - CURSOR_TIMEOUT,
-      color: users[cursor.id].color,
-    }));
+    const cursors = allCursors
+      .filter((cursor) => cursor.id !== id)
+      .map((cursor) => ({
+        ...cursor,
+        active: cursor.timestamp > currentTime - CURSOR_TIMEOUT,
+        color: users[cursor.id].color,
+      }));
     const pings = allPings
       .map((ping) => ({
         ...ping,

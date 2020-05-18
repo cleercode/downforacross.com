@@ -97,6 +97,25 @@ export default class Toolbar extends Component {
     );
   }
 
+  renderMobileMenu() {
+    return (
+      <div className="toolbar--menu reveal">
+        <ActionMenu
+          label="Reveal"
+          onBlur={this.handleBlur}
+          actions={{
+            'Check square': this.check.bind(this, 'square'),
+            'Check word': this.check.bind(this, 'word'),
+            'Check puzzle': this.check.bind(this, 'puzzle'),
+            'Reveal square': this.reveal.bind(this, 'square'),
+            'Reveal word': this.reveal.bind(this, 'word'),
+            'Reveal puzzle': this.reveal.bind(this, 'puzzle'),
+          }}
+        />
+      </div>
+    );
+  }
+
   renderChatButton() {
     return <MdChatBubble onClick={this.handleToggleChat} className="toolbar--chat" />;
   }
@@ -214,8 +233,7 @@ export default class Toolbar extends Component {
               onStart={onStartClock}
               onPause={onPauseClock}
             />
-            {solved ? null : this.renderCheckMenu()}
-            {solved ? null : this.renderRevealMenu()}
+            {solved ? null : this.renderMobileMenu()}
             {this.renderChatButton()}
           </Flex>
         </Flex>
